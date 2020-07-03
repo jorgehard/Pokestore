@@ -1,0 +1,27 @@
+.section{
+  display:flex;
+  align-items:center;
+  height:10%;
+  background:#5D6D7C;
+}
+.logo{
+  width:10%;
+  text-align:center;
+}
+.logo img{
+  padding:0px;
+  margin:0px;
+  width:80%;
+}
+.inputBar{
+  width:80%;
+  padding-left:30px;
+}
+.rightBar{
+  width:10%;
+  display:flex;
+}
+.rightBar > .icon{
+  padding:0px 10px;
+  color:#F2EFE2;
+}
