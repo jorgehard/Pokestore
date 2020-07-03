@@ -82,15 +82,15 @@ const divStyle = {
   opacity: '0.7',
   fontSize: '18px'
 }
-export default function Card({ name }) {
+export default function Card({ name, height, weight, id }) {
   return (
     <Section>
       <DivImage>
-        <Image src="https://pokeres.bastionbot.org/images/pokemon/2.png" alt="Buba" />
+        <Image src="https://pokeres.bastionbot.org/images/pokemon/{id}.png" alt="Buba" />
       </DivImage>
       <NameContainer>
         <Title>Name:</Title>
-        <H3Center>Bulbasaur</H3Center>
+        <H3Center>{name}</H3Center>
       </NameContainer>
       <SectionStats>
         <DivContainer>
@@ -100,14 +100,14 @@ export default function Card({ name }) {
             <span>Height</span>
 
           </Title>
-          <H3>11</H3>
+          <H3>{height}</H3>
         </DivContainer>
         <DivContainer>
           <Title>
             <FaDumbbell />
             <span> Weight </span>
           </Title>
-          <H3>51</H3>
+          <H3>{weight}</H3>
         </DivContainer>
       </SectionStats>
       <NameContainer>

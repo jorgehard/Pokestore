@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import './style.css';
 import Card from './Card';
+import api from '../../services/index';
 
 const Body = styled.section`
   padding:20px;
@@ -20,17 +21,23 @@ const DivFlex = styled.div`
 `;
 
 export default function Container() {
+  const [pokemons, setPokemons] = useState([]);
+  const getPokemon = async () => {
+    try {
+      const response = await api.get();
+      setPokemons(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    getPokemon();
+  }, []);
+
   return (
     <Body>
       <DivFlex>
-        <Card name="Testando" />
-        <Card name="Testando" />
-        <Card name="Testando" />
-        <Card name="Testando" />
-        <Card name="Testando" />
-        <Card name="Testando" />
-        <Card name="Testando" />
-        <Card name="Testando" />
+        {pokemons.results.map(({ name }) => <li>{{ name }}</li>)}
       </DivFlex>
     </Body>
   );
