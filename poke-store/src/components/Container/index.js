@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import './style.css';
 import Card from './Card';
 import api from '../../services/index';
+import axios from 'axios';
 
 const Body = styled.section`
   padding:20px;
@@ -21,10 +22,13 @@ const DivFlex = styled.div`
 `;
 
 export default function Container() {
+
   const [pokemons, setPokemons] = useState([]);
+
   useEffect(() => {
     getPokemon();
   }, []);
+
   const getPokemon = async () => {
     try {
       let response = await api.get();
@@ -33,6 +37,11 @@ export default function Container() {
       console.log(error);
     }
   };
+
+  const getInfoPokemon = async (url) => {
+    return await axios.get(url).then(response => response.data).catch(error => console.log(error));
+  }
+
   return (
     <Body>
       <DivFlex>
@@ -40,7 +49,14 @@ export default function Container() {
           pokemons ?
             pokemons.map((pokemon) =>
               <>
-                <Card url={pokemon.url.split('/')} name={pokemon.name} />
+
+                {getInfoPokemon(pokemon.url)}
+
+
+
+
+                {console.log(pokemon.url)}
+                <Card url={pokemon.url} name={pokemon.name} />
               </>
             )
             : "Não existem Pokemons para serem listados"

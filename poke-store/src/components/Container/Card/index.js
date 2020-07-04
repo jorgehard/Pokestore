@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FaTextHeight, FaDumbbell, FaPlus } from 'react-icons/fa';
 import styled from 'styled-components';
 
@@ -83,7 +83,11 @@ const divStyle = {
   fontSize: '18px'
 }
 export default function Card({ name, url, height, weight }) {
-  const idPokemon = url.slice(-2)[0];
+  function capitalize(str) {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  }
+  const idPokemon = url.split('/').slice(-2)[0];
+
   return (
     <Section>
       <DivImage>
@@ -91,17 +95,15 @@ export default function Card({ name, url, height, weight }) {
       </DivImage>
       <NameContainer>
         <Title>Name:</Title>
-        <H3Center>{name}</H3Center>
+        <H3Center>{capitalize(name)}</H3Center>
       </NameContainer>
       <SectionStats>
         <DivContainer>
           <Title>
-
             <FaTextHeight />
             <span>Height</span>
-
           </Title>
-          <H3>{height}</H3>
+          <H3></H3>
         </DivContainer>
         <DivContainer>
           <Title>
