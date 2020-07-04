@@ -82,11 +82,12 @@ const divStyle = {
   opacity: '0.7',
   fontSize: '18px'
 }
-export default function Card({ name, height, weight, id }) {
+export default function Card({ name, url, height, weight }) {
+  const idPokemon = url.slice(-2)[0];
   return (
     <Section>
       <DivImage>
-        <Image src="https://pokeres.bastionbot.org/images/pokemon/{id}.png" alt="Buba" />
+        <Image src={`https://pokeres.bastionbot.org/images/pokemon/${idPokemon}.png`} alt="Buba" />
       </DivImage>
       <NameContainer>
         <Title>Name:</Title>

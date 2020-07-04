@@ -22,22 +22,29 @@ const DivFlex = styled.div`
 
 export default function Container() {
   const [pokemons, setPokemons] = useState([]);
+  useEffect(() => {
+    getPokemon();
+  }, []);
   const getPokemon = async () => {
     try {
-      const response = await api.get();
-      setPokemons(response.data);
+      let response = await api.get();
+      setPokemons(response.data.results);
     } catch (error) {
       console.log(error);
     }
   };
-  useEffect(() => {
-    getPokemon();
-  }, []);
-
   return (
     <Body>
       <DivFlex>
-        {pokemons.results.map(({ name }) => <li>{{ name }}</li>)}
+        {
+          pokemons ?
+            pokemons.map((pokemon) =>
+              <>
+                <Card url={pokemon.url.split('/')} name={pokemon.name} />
+              </>
+            )
+            : "Não existem Pokemons para serem listados"
+        }
       </DivFlex>
     </Body>
   );
