@@ -85,8 +85,7 @@ const divStyle = {
 }
 export default function Card({ name, url, height, weight }) {
   const [pokemonInfo, setPokemonInfo] = useState([]);
-
-  //const idPokemon = url.split('/').slice(-2)[0];
+  const idPokemon = url.split('/').slice(-2)[0];
   //Functions
   function capitalize(str) {
     return str.charAt(0).toUpperCase() + str.slice(1);
@@ -99,14 +98,14 @@ export default function Card({ name, url, height, weight }) {
   //UseEffect
   useEffect(() => {
     infoPokemon(url);
-  }, []);
+  }, [url]);
 
 
   //Return
   return (
-    <Section>
+    <Section Section >
       <DivImage>
-        <Image src={`https://pokeres.bastionbot.org/images/pokemon/${pokemonInfo.id}.png`} alt="Buba" />
+        <Image src={`https://pokeres.bastionbot.org/images/pokemon/${idPokemon}.png`} alt="Buba" />
       </DivImage>
       <NameContainer>
         <Title>Name:</Title>
@@ -133,6 +132,6 @@ export default function Card({ name, url, height, weight }) {
         <H3Center style={divStyle}>${pokemonInfo.base_experience}</H3Center>
       </NameContainer>
       <Button> Comprar <FaPlus style={{ paddingLeft: '5px', fontSize: '10px' }} /></Button>
-    </Section >
+    </Section>
   );
 }

@@ -3,6 +3,10 @@
   align-items:center;
   height:10%;
   background:#5D6D7C;
+  position:fixed;
+  width:100%;
+  top:0;
+  z-index:1;
 }
 .logo{
   width:10%;
@@ -20,8 +24,13 @@
 .rightBar{
   width:10%;
   display:flex;
+  z-index:2;
 }
 .rightBar > .icon{
   padding:0px 10px;
   color:#F2EFE2;
+  cursor:pointer;
+}
+.rightBar > .icon:hover{
+  color:#fff;
 }
