@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FaTextHeight, FaDumbbell, FaPlus } from 'react-icons/fa';
 import styled from 'styled-components';
+import axios from 'axios';
 
 const Section = styled.div`
   width:20%;
@@ -83,15 +84,29 @@ const divStyle = {
   fontSize: '18px'
 }
 export default function Card({ name, url, height, weight }) {
+  const [pokemonInfo, setPokemonInfo] = useState([]);
+
+  //const idPokemon = url.split('/').slice(-2)[0];
+  //Functions
   function capitalize(str) {
     return str.charAt(0).toUpperCase() + str.slice(1);
   }
-  const idPokemon = url.split('/').slice(-2)[0];
 
+  const infoPokemon = async (url) => {
+    let response = await axios.get(url).catch(error => console.log(error));
+    setPokemonInfo(response.data);
+  }
+  //UseEffect
+  useEffect(() => {
+    infoPokemon(url);
+  }, []);
+
+
+  //Return
   return (
     <Section>
       <DivImage>
-        <Image src={`https://pokeres.bastionbot.org/images/pokemon/${idPokemon}.png`} alt="Buba" />
+        <Image src={`https://pokeres.bastionbot.org/images/pokemon/${pokemonInfo.id}.png`} alt="Buba" />
       </DivImage>
       <NameContainer>
         <Title>Name:</Title>
@@ -103,19 +118,19 @@ export default function Card({ name, url, height, weight }) {
             <FaTextHeight />
             <span>Height</span>
           </Title>
-          <H3></H3>
+          <H3>{pokemonInfo.height}</H3>
         </DivContainer>
         <DivContainer>
           <Title>
             <FaDumbbell />
             <span> Weight </span>
           </Title>
-          <H3>{weight}</H3>
+          <H3>{pokemonInfo.weight}</H3>
         </DivContainer>
       </SectionStats>
       <NameContainer>
         <Title>Price:</Title>
-        <H3Center style={divStyle}>$35.00</H3Center>
+        <H3Center style={divStyle}>${pokemonInfo.base_experience}</H3Center>
       </NameContainer>
       <Button> Comprar <FaPlus style={{ paddingLeft: '5px', fontSize: '10px' }} /></Button>
     </Section >

@@ -37,11 +37,6 @@ export default function Container() {
       console.log(error);
     }
   };
-
-  const getInfoPokemon = async (url) => {
-    return await axios.get(url).then(response => response.data).catch(error => console.log(error));
-  }
-
   return (
     <Body>
       <DivFlex>
@@ -49,13 +44,6 @@ export default function Container() {
           pokemons ?
             pokemons.map((pokemon) =>
               <>
-
-                {getInfoPokemon(pokemon.url)}
-
-
-
-
-                {console.log(pokemon.url)}
                 <Card url={pokemon.url} name={pokemon.name} />
               </>
             )
