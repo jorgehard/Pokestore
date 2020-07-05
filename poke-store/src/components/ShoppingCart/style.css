@@ -1,16 +1,4 @@
-/* .cart{
-  display:block;
-  position:absolute;
-  top:0%;
-  width:30%;
-  right:0;
-  z-index:3;
-  height:100%;
-  background: #FFF;
-  -webkit-box-shadow: 0px 0px 10px -4px rgba(0,0,0,0.75);
-  -moz-box-shadow: 0px 0px 10px -4px rgba(0,0,0,0.75);
-  box-shadow: 0px 0px 10px -4px rgba(0,0,0,0.75);
-} */
+
 .cart {
   position: fixed;
   z-index: 3; 
@@ -33,21 +21,34 @@
   padding: 20px;
   border: 1px solid #f3f3f3;
   width: 60%; /* Could be more or less, depending on screen size */
-  height:60vh;
+  height: auto;
 }
 .cart-header{
   display:flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  border-bottom:1px solid #f3f3f3;
+  padding-bottom:5px;
 }
 .cart-header > h3 {
-  flex-grow:11
+  flex-grow:11;
+  font-weight:bold;
+  color:#333;
 }
 .cart-header > span {
   flex-grow: 1;
   text-align:right;
   padding-right:10px;
+}
+.cart-body{
+  padding:0px 10px ;
+}
+
+.cart-footer{
+  width:100%;
+  text-align:center;
+  padding-top:20px;
 }
 /* The Close Button */
 .close {

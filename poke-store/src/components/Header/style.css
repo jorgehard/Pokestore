@@ -31,6 +31,12 @@
   color:#F2EFE2;
   cursor:pointer;
 }
+.rightBar > .icon span{
+  position:relative;
+  bottom:20px;
+  left:3px;
+  font-size:14px;
+}
 .rightBar > .icon:hover{
   color:#fff;
 }

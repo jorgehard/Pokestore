@@ -21,7 +21,7 @@ const DivFlex = styled.div`
   }
 `;
 
-export default function Container() {
+export default function Container(props) {
 
   const [pokemons, setPokemons] = useState([]);
 
@@ -47,6 +47,7 @@ export default function Container() {
                 key={pokemon.url.split('/').slice(-2)[0]}
                 url={pokemon.url}
                 name={pokemon.name}
+                setCart={(val) => props.setCart(val)}
               />
             )
             : "Não existem Pokemons para serem listados"
