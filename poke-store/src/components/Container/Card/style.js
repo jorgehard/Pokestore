@@ -73,8 +73,13 @@ export const Button = styled.button`
   margin-top:10px;
   color:#FFF;
   font-weight:bold;
+  cursor:pointer;
   :hover{
-    cursor:pointer;
+    background: #fdd000;
+    background: -moz-linear-gradient(top, #fdd000 1%, #f7ed33 50%, #fdd000 100%);
+    background: -webkit-linear-gradient(top, #fdd000 1%,#f7ed33 50%,#fdd000 100%);
+    background: linear-gradient(to bottom, #fdd000 1%,#f7ed33 50%,#fdd000 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fdd000', endColorstr='#fdd000',GradientType=0 );
   }
 `;
 export const divStyle = {

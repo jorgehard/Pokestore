@@ -2,9 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { FaTextHeight, FaDumbbell, FaPlus } from 'react-icons/fa';
 import * as S from './style';
 import axios from 'axios';
-import { ToastContainer, toast } from "react-toastify";
 
-export default function Card({ name, url, setCart }) {
+export default function Card({ name, url, setCart, showToast }) {
 
   const idPokemon = url.split('/').slice(-2)[0];
   const [pokemonInfo, setPokemonInfo] = useState([]);
@@ -34,7 +33,7 @@ export default function Card({ name, url, setCart }) {
     const returnedTarget = oldCart.concat([products]);
     localStorage.setItem('products', JSON.stringify(returnedTarget));
     setCart(Number(returnedTarget.length));
-
+    showToast()
   }
   //UseEffect
   useEffect(() => {
