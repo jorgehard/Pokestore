@@ -12,23 +12,50 @@ const Button = styled.button`
   color:#f3f3f3;
   font-size:18px;
   font-family:'Karla', sans-serif;
-`
+`;
+const Null = styled.div`
+  display:block;
+  width:100%;
+  font-size:15px;
+  font-family:'Karla', sans-serif;
+  text-align:center;
+  padding:20px 0px;
+`;
+const PriceTotal = styled.div`
+  padding:20px 0px;
+  width:100%;
+  text-align:right;
+  font-size:21px;
+  font-weight:weight;
+  font-family:'Karla', sans-serif;
+`;
 export default function ShoppingCart(props) {
+  const cart = JSON.parse(localStorage.getItem('products') ? localStorage.getItem('products') : "[]");
+  let totalCart = 0;
+
   return (
-    <div id="modal141" className="cart">
+    <div id="modal141" className="cart" >
       <div className="cart-content">
         <div className="cart-header">
           <h3>Carrinho de compras</h3>
           <span className="close" onClick={props.hideModal}>&times;</span>
         </div>
         <div className="cart-body">
-          <ItemCart name="Bulbasaur" id="1" />
-          <ItemCart name="Charmander" id="4" />
+          {
+            cart.length > 0 ?
+              cart.map(({ id, item_id, name, height, weight, price, image }) => {
+                totalCart += price;
+                return <ItemCart key={id} item={item_id} name={name} height={height} weight={weight} price={price} image={image} />
+              })
+              :
+              <Null>Nenhum item encontrado</Null>
+          }
+          <PriceTotal> Total : ${totalCart}</PriceTotal>
         </div>
         <div className="cart-footer">
           <Button>Finalizar Compra</Button>
         </div>
       </div>
-    </div>
+    </div >
   );
 }

@@ -5,6 +5,7 @@ import Container from '../../components/Container';
 
 export default function Catalogo() {
   let val = JSON.parse(localStorage.getItem('products') ? localStorage.getItem('products') : "[]");
+
   const [countCart, setCountCart] = useState(val.length);
 
 

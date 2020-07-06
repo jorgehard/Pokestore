@@ -2,10 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { FaTextHeight, FaDumbbell, FaPlus } from 'react-icons/fa';
 import * as S from './style';
 import axios from 'axios';
+import { ToastContainer, toast } from "react-toastify";
 
 export default function Card({ name, url, setCart }) {
-  const [pokemonInfo, setPokemonInfo] = useState([]);
+
   const idPokemon = url.split('/').slice(-2)[0];
+  const [pokemonInfo, setPokemonInfo] = useState([]);
+  const [pokemonImage, setPokemonImage] = useState(`https://pokeres.bastionbot.org/images/pokemon/${idPokemon}.png`);
+
   //Functions
   function capitalize(str) {
     return str.charAt(0).toUpperCase() + str.slice(1);
@@ -15,26 +19,35 @@ export default function Card({ name, url, setCart }) {
     let response = await axios.get(url).catch(error => console.log(error));
     setPokemonInfo(response.data);
   }
-  const handleCart = (id, price) => {
-    const products = { 'id': id, 'price': price };
+  const handleCart = (id, name, weight, height, price, pokemonImage) => {
     const oldCart = JSON.parse(localStorage.getItem('products') ? localStorage.getItem('products') : "[]");
+    let count = oldCart.length;
+    const products = {
+      'id': count + 1,
+      'item_id': Number(id),
+      'name': name,
+      'weight': weight,
+      'height': height,
+      'price': price,
+      'image': pokemonImage
+    };
     const returnedTarget = oldCart.concat([products]);
     localStorage.setItem('products', JSON.stringify(returnedTarget));
     setCart(Number(returnedTarget.length));
 
-    console.log(returnedTarget.length);
   }
   //UseEffect
   useEffect(() => {
     infoPokemon(url);
   }, [url]);
 
-
-  //Return
+  const onError = (val) => {
+    setPokemonImage(`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${val}.png`);
+  }
   return (
     <S.Section>
       <S.DivImage>
-        <S.Image src={`https://pokeres.bastionbot.org/images/pokemon/${idPokemon}.png`} alt="Buba" />
+        <S.Image src={pokemonImage} onError={(val) => onError(idPokemon)} alt={name} />
       </S.DivImage>
       <S.NameContainer>
         <S.Title>Name:</S.Title>
@@ -60,7 +73,14 @@ export default function Card({ name, url, setCart }) {
         <S.Title>Price:</S.Title>
         <S.H3Center style={S.divStyle}>${pokemonInfo.base_experience}</S.H3Center>
       </S.NameContainer>
-      <S.Button onClick={() => handleCart(idPokemon, pokemonInfo.base_experience)}> Comprar <FaPlus style={{ paddingLeft: '5px', fontSize: '10px' }} /></S.Button>
+      <S.Button onClick={() => handleCart(
+        idPokemon,
+        capitalize(name),
+        pokemonInfo.weight,
+        pokemonInfo.height,
+        pokemonInfo.base_experience,
+        pokemonImage
+      )}> Comprar <FaPlus style={{ paddingLeft: '5px', fontSize: '10px' }} /></S.Button>
     </S.Section>
   );
 

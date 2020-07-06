@@ -26,7 +26,7 @@ export const Title = styled.span`
 `;
 
 export const H3 = styled.h3`
-  font-size:19px;
+  font-size:15px;
   font-weight:normal;
   font-family:'Karla', sans-serif;
   padding-left:5px;
