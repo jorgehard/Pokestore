@@ -15,7 +15,7 @@ export default function Catalogo() {
 
   return (
     <>
-      <Header countCart={countCart} />
+      <Header setCart={(val) => setCart(val)} countCart={countCart} />
       <Container setCart={(val) => setCart(val)} />
     </>
   );

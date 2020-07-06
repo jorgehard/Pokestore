@@ -32,7 +32,7 @@ export default function Header(props) {
           </div>
         </div>
       </section>
-      {showCart ? <ShoppingCart hideModal={() => hideModal()} /> : null}
+      {showCart ? <ShoppingCart setCart={(val) => props.setCart(val)} hideModal={() => hideModal()} /> : null}
     </>
   );
 }

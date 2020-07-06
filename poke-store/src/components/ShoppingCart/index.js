@@ -33,6 +33,12 @@ export default function ShoppingCart(props) {
   const cart = JSON.parse(localStorage.getItem('products') ? localStorage.getItem('products') : "[]");
   let totalCart = 0;
 
+  const finalizaCompra = () => {
+    props.hideModal();
+    props.setCart(0);
+    localStorage.removeItem('products');
+    console.log('finalizando');
+  }
   return (
     <div id="modal141" className="cart" >
       <div className="cart-content">
@@ -45,7 +51,7 @@ export default function ShoppingCart(props) {
             cart.length > 0 ?
               cart.map(({ id, item_id, name, height, weight, price, image }) => {
                 totalCart += price;
-                return <ItemCart key={id} item={item_id} name={name} height={height} weight={weight} price={price} image={image} />
+                return <ItemCart setCart={(val) => props.setCart(val)} key={id} idUnique={id} item={item_id} name={name} height={height} weight={weight} price={price} image={image} />
               })
               :
               <Null>Nenhum item encontrado</Null>
@@ -53,7 +59,12 @@ export default function ShoppingCart(props) {
           <PriceTotal> Total : ${totalCart}</PriceTotal>
         </div>
         <div className="cart-footer">
-          <Button>Finalizar Compra</Button>
+          {
+            cart.length > 0 ?
+              <Button onClick={() => finalizaCompra()}>Finalizar Compra</Button>
+              :
+              <Button style={{ opacity: '0.7', cursor: 'not-allowed' }}>Finalizar Compra</Button>
+          }
         </div>
       </div>
     </div >
