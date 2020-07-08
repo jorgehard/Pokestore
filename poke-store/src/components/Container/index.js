@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import './style.css';
 import Card from './Card';
 import api from '../../services/index';
-import { FaInfoCircle } from 'react-icons/fa';
+import { FaInfoCircle, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 
 const Body = styled.section`
   padding:20px;
@@ -21,7 +21,7 @@ const DivFlex = styled.div`
     border:1px solid;
   }
 `;
-export const Toast = styled.div`
+const Toast = styled.div`
   position:fixed;
   top:12vh;
   right:10px;
@@ -55,20 +55,30 @@ const Footer = styled.div`
   text-align:center;
 `;
 
-
 const pageNumbers = [];
+let pageRange = [];
 
-for (let i = 1; i <= Math.ceil(807 / 24); i++) {
+for (let i = 1; i <= Math.ceil(903 / 24); i++) {
   pageNumbers.push(i);
 }
 
-
-
 export default function Container(props) {
 
-  const [pokemons, setPokemons] = useState([]);
+  const [pokemons, setPokemons] = useState();
   const [toast, setToast] = useState(false);
-  // const [pageCount, setPageCount] = useState(0);
+  const [page, setPage] = useState(1);
+
+  if (page > 5 && page <= pageNumbers.length) {
+    pageRange = [];
+    for (let i = page - 5; i < page + 5; i++) {
+      if (i <= pageNumbers.length) {
+        pageRange.push(i);
+      }
+    }
+  } else {
+    pageRange = pageNumbers;
+  }
+
 
   const showToast = () => {
     setToast(true);
@@ -90,11 +100,11 @@ export default function Container(props) {
     }
   };
   const showMore = async (pageNumber) => {
+    document.querySelector('body').scrollTo(0, 0);
     let count = (pageNumber - 1) * 24;
+    setPage(pageNumber);
     getPokemon(count);
   }
-  //PAGINATION
-
   return (
     <Body>
       <DivFlex>
@@ -115,15 +125,23 @@ export default function Container(props) {
       </DivFlex>
       <Footer>
         <>
-          <ul className="pagination">
-            {
-              pokemons ?
-                pageNumbers.map((response) =>
-                  <li onClick={() => showMore(response)}>{response}</li>
-                )
-                : "Não existem Pokemons para serem listados"
-            }
-          </ul>
+          {
+            pokemons ?
+              <>
+                <p className="lengthPage">Pagina: {page} - {pageNumbers.length}</p>
+                <ul className="pagination">
+
+                  <li className={(page <= 1) ? 'disabled' : ''} onClick={(page <= 1) ? '' : () => showMore(page - 1)}><FaChevronLeft /></li>
+                  {
+                    pageRange.slice(0, 10).map((response) =>
+                      <li className={page === response ? 'active' : ''} onClick={() => showMore(response)}>{response}</li>
+                    )
+                  }
+                  <li className={(page >= pageNumbers.length) ? 'disabled' : ''} onClick={(page >= pageNumbers.length) ? '' : () => showMore(page + 1)}><FaChevronRight /></li>
+                </ul>
+              </>
+              : " - "
+          }
         </>
       </Footer>
     </Body >

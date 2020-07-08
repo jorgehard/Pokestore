@@ -5,11 +5,22 @@ import logo from '../../assets/logo.png';
 import SearchInput from '../SearchInput';
 import { FaShoppingCart, FaUser } from 'react-icons/fa';
 import ShoppingCart from '../ShoppingCart';
+import ModalFinish from '../ModalFinish';
+
 export default function Header(props) {
   const [showCart, setShowCart] = useState(false);
+  const [showFinish, setShowFinish] = useState(false);
 
   const showModal = () => setShowCart(true);
   const hideModal = () => setShowCart(false);
+  //Finish Modal
+  const hideModalFinish = () => setShowFinish(false);
+  const showModalFinish = () => {
+    setShowFinish(true);
+    setTimeout(() => {
+      setShowFinish(false);
+    }, 4000);
+  }
 
   return (
     <>
@@ -32,7 +43,17 @@ export default function Header(props) {
           </div>
         </div>
       </section>
-      {showCart ? <ShoppingCart setCart={(val) => props.setCart(val)} hideModal={() => hideModal()} /> : null}
+      {showCart ?
+        <ShoppingCart
+          setCart={(val) => props.setCart(val)}
+          hideModal={() => hideModal()}
+          showModalFinish={() => showModalFinish()}
+        /> : null}
+      {showFinish ?
+        <ModalFinish
+          hideModalFinish={() => hideModalFinish()}
+        /> : null}
+
     </>
   );
 }

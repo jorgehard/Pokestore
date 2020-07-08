@@ -37,7 +37,7 @@ export default function ShoppingCart(props) {
     props.hideModal();
     props.setCart(0);
     localStorage.removeItem('products');
-    console.log('finalizando');
+    props.showModalFinish();
   }
   return (
     <div id="modal141" className="cart fadeIn2" >
