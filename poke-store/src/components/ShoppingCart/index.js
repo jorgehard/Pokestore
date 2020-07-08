@@ -40,7 +40,7 @@ export default function ShoppingCart(props) {
     console.log('finalizando');
   }
   return (
-    <div id="modal141" className="cart" >
+    <div id="modal141" className="cart fadeIn2" >
       <div className="cart-content">
         <div className="cart-header">
           <h3>Carrinho de compras</h3>

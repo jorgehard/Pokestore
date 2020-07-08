@@ -19,11 +19,8 @@ const Button = styled.button`
   height:40px;
   width:8%;
   border:none;
-  background: #f2efe2;
-  background: -moz-linear-gradient(top, #f2efe2 0%, #c4c4c4 50%, #f2efe2 100%);
-  background: -webkit-linear-gradient(top, #f2efe2 0%,#c4c4c4 50%,#f2efe2 100%);
-  background: linear-gradient(to bottom, #f2efe2 0%,#c4c4c4 50%,#f2efe2 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2efe2', endColorstr='#f2efe2',GradientType=0 );
+  background: #DCDBD4;
+  cursor:pointer;
   color:#39444f;
 `;
 

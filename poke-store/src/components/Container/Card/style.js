@@ -5,12 +5,13 @@ export const Section = styled.div`
   margin:10px;
   display:flex;
   background:#FFF;
-  border:1px solid #F2EFE2;
-  flex-direction:column;
-  padding:13px;
+  border:1px solid #F2EFE2;  
   -webkit-box-shadow: 0px 0px 5px -4px rgba(0,0,0,0.75);
   -moz-box-shadow: 0px 0px 5px -4px rgba(0,0,0,0.75);
   box-shadow: 0px 0px 5px -4px rgba(0,0,0,0.75);
+  flex-direction:column;
+  padding:13px;
+
 `;
 export const DivImage = styled.div`
   border-bottom:1px solid #f3f3f3;

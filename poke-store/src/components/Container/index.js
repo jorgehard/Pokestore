@@ -49,10 +49,26 @@ export const Toast = styled.div`
     right: 10vh;
 }
 `
+const Footer = styled.div`
+  width:100%;
+  padding:10px 0px;
+  text-align:center;
+`;
+
+
+const pageNumbers = [];
+
+for (let i = 1; i <= Math.ceil(807 / 24); i++) {
+  pageNumbers.push(i);
+}
+
+
+
 export default function Container(props) {
 
   const [pokemons, setPokemons] = useState([]);
   const [toast, setToast] = useState(false);
+  // const [pageCount, setPageCount] = useState(0);
 
   const showToast = () => {
     setToast(true);
@@ -65,14 +81,20 @@ export default function Container(props) {
     getPokemon();
   }, []);
 
-  const getPokemon = async () => {
+  const getPokemon = async (offset) => {
     try {
-      let response = await api.get();
+      let response = await api.get(`pokemon?limit=24&offset=${offset}`);
       setPokemons(response.data.results);
     } catch (error) {
       console.log(error);
     }
   };
+  const showMore = async (pageNumber) => {
+    let count = (pageNumber - 1) * 24;
+    getPokemon(count);
+  }
+  //PAGINATION
+
   return (
     <Body>
       <DivFlex>
@@ -91,6 +113,19 @@ export default function Container(props) {
             : "Não existem Pokemons para serem listados"
         }
       </DivFlex>
-    </Body>
+      <Footer>
+        <>
+          <ul className="pagination">
+            {
+              pokemons ?
+                pageNumbers.map((response) =>
+                  <li onClick={() => showMore(response)}>{response}</li>
+                )
+                : "Não existem Pokemons para serem listados"
+            }
+          </ul>
+        </>
+      </Footer>
+    </Body >
   );
 }
