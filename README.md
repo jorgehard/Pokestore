@@ -35,13 +35,13 @@ O Projeto foi finalizado e feito deploy pelo netlify.
 http://jorge-pokestore.netlify.app
 
 <h1 align="center">
-    <img alt="Example" title="Example" src="./web/src/assets/preview/catalogo.png" width="70%" />
+    <img alt="Example" title="Example" src="./poke-store/src/assets/preview/catalogo.png" width="70%" />
 </h1>
 <h1 align="center">
-    <img alt="Example" title="Example" src="./web/src/assets/preview/carrinho.png" width="70%" />
+    <img alt="Example" title="Example" src="./poke-store/src/assets/preview/carrinho.png" width="70%" />
 </h1>
 <h1 align="center">
-    <img alt="Example" title="Example" src="./web/src/assets/preview/finalizando.png" width="70%" />
+    <img alt="Example" title="Example" src="./poke-store/src/assets/preview/finalizando.png" width="70%" />
 </h1>
 
 ## :clipboard: Principais conceitos utilizados
