@@ -31,7 +31,7 @@ export default function Header(props) {
           </Link>
         </div>
         <div className="inputBar">
-          <SearchInput />
+          <SearchInput setPesquisa={(val) => props.setPesquisa(val)} setPokemon={(val) => props.setPokemon(val)} />
         </div>
         <div className="rightBar">
           <div className="icon" onClick={showModal}>

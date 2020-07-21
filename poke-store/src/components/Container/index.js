@@ -53,6 +53,7 @@ const Footer = styled.div`
   width:100%;
   padding:10px 0px;
   text-align:center;
+
 `;
 
 const pageNumbers = [];
@@ -64,7 +65,6 @@ for (let i = 1; i <= Math.ceil(903 / 24); i++) {
 
 export default function Container(props) {
 
-  const [pokemons, setPokemons] = useState();
   const [toast, setToast] = useState(false);
   const [page, setPage] = useState(1);
 
@@ -94,7 +94,7 @@ export default function Container(props) {
   const getPokemon = async (offset) => {
     try {
       let response = await api.get(`pokemon?limit=24&offset=${offset}`);
-      setPokemons(response.data.results);
+      props.setPokemon(response.data.results);
     } catch (error) {
       console.log(error);
     }
@@ -110,8 +110,8 @@ export default function Container(props) {
       <DivFlex>
         {toast ? <Toast className='fadeIn'><FaInfoCircle /> Produto adicionado ao carrinho</Toast> : null}
         {
-          pokemons ?
-            pokemons.map((pokemon) =>
+          props.pokemons ?
+            props.pokemons.map((pokemon) =>
               <Card
                 key={pokemon.url.split('/').slice(-2)[0]}
                 url={pokemon.url}
@@ -126,7 +126,7 @@ export default function Container(props) {
       <Footer>
         <>
           {
-            pokemons ?
+            props.pokemons ?
               <>
                 <p className="lengthPage">Pagina: {page} - {pageNumbers.length}</p>
                 <ul className="pagination">

@@ -73,3 +73,18 @@
     opacity: 0.5;
   }
 }
+
+  @media(max-width: 890px) {
+    .pagination li {
+      
+      margin:3px;
+      font-size:11px;
+    }
+  }
+  @media(max-width: 513px) {
+    .pagination li {
+      
+      margin:2px;
+      font-size:9px;
+    }
+  }

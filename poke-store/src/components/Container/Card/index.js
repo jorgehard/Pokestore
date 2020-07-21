@@ -6,6 +6,7 @@ import axios from 'axios';
 export default function Card({ name, url, setCart, showToast }) {
 
   const idPokemon = url.split('/').slice(-2)[0];
+  console.log(idPokemon);
   const [pokemonInfo, setPokemonInfo] = useState([]);
   const [pokemonImage, setPokemonImage] = useState(`https://pokeres.bastionbot.org/images/pokemon/${idPokemon}.png`);
 

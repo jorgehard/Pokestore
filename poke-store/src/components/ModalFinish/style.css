@@ -37,7 +37,6 @@
 }
 .modal-content > .flex div {
   flex-grow:1;
-  
   text-align:center;
 }
 .modal-content .flex h1{
@@ -68,3 +67,17 @@
   padding:10px 0px;
   opacity:0.7;
 }
+
+  @media(max-width: 890px) {
+    .modal-content {
+      width: 70%; 
+    }
+     .modal-content .flex h1{
+      font-size:30px;
+    }
+    .modal-content .flex p{
+      font-size:20px;
+    }
+ 
+  }
+  

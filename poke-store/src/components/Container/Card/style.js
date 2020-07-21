@@ -11,7 +11,12 @@ export const Section = styled.div`
   box-shadow: 0px 0px 5px -4px rgba(0,0,0,0.75);
   flex-direction:column;
   padding:13px;
-
+  @media(max-width: 890px) {
+    width:40%;
+  }
+  @media(max-width: 513px) {
+    width:60%;
+  }
 `;
 export const DivImage = styled.div`
   border-bottom:1px solid #f3f3f3;

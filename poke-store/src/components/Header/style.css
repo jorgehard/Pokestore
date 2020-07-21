@@ -1,6 +1,7 @@
 .section{
   display:flex;
-  align-items:center;
+  align-items: center;
+  flex-wrap: wrap;
   height:10%;
   background:#5D6D7C;
   position:fixed;
@@ -9,8 +10,8 @@
   z-index:1;
 }
 .logo{
-  width:10%;
   text-align:center;
+	width:10%;
 }
 .logo img{
   padding:0px;
@@ -18,13 +19,16 @@
   width:80%;
 }
 .inputBar{
-  width:80%;
+  width:50%;
   padding-left:30px;
+  flex-grow:9;
 }
 .rightBar{
-  width:10%;
   display:flex;
   z-index:2;
+  width:20%;
+  justify-content: flex-end;
+  padding-right:30px;
 }
 .rightBar > .icon{
   padding:0px 10px;
@@ -40,3 +44,26 @@
 .rightBar > .icon:hover{
   color:#fff;
 }
+  @media(max-width: 890px) {
+    .logo{
+      width:15%;
+    }
+    .inputBar{
+      width:35%;
+      padding-left:10px;
+    }
+    .rightBar{
+      width:30%;
+      padding-right:10px;
+    } 
+  }
+  @media(max-width: 513px) {
+    .logo{
+      width:20%;
+    }
+    .inputBar{
+      width:25%;
+      padding-left:10px;
+    }
+    
+  }
