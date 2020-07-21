@@ -39,7 +39,9 @@ export default function Header(props) {
             <span>{props.countCart}</span>
           </div>
           <div className="icon">
-            <FaUser size={28} />
+            <a href="https://github.com/jorgehard/Pokestore/" style={{ textDecoration: 'none', color: '#f3f3f3' }}>
+              <FaUser size={28} />
+            </a>
           </div>
         </div>
       </section>
