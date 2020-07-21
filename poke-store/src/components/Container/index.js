@@ -87,10 +87,6 @@ export default function Container(props) {
     }, 3000);
   }
 
-  useEffect(() => {
-    getPokemon();
-  }, []);
-
   const getPokemon = async (offset) => {
     try {
       let response = await api.get(`pokemon?limit=24&offset=${offset}`);
@@ -99,6 +95,16 @@ export default function Container(props) {
       console.log(error);
     }
   };
+
+  //UseEffect
+
+
+
+  useEffect(() => {
+    getPokemon();
+  }, []);
+
+
   const showMore = async (pageNumber) => {
     document.querySelector('body').scrollTo(0, 0);
     let count = (pageNumber - 1) * 24;
@@ -130,11 +136,15 @@ export default function Container(props) {
               <>
                 <p className="lengthPage">Pagina: {page} - {pageNumbers.length}</p>
                 <ul className="pagination">
-
-                  <li className={(page <= 1) ? 'disabled' : ''} onClick={(page <= 1) ? '' : () => showMore(page - 1)}><FaChevronLeft /></li>
+                  {
+                    (page <= 1) ?
+                      <li className="disabled"><FaChevronLeft /></li>
+                      :
+                      <li onClick={() => showMore(page - 1)}><FaChevronLeft /></li>
+                  }
                   {
                     pageRange.slice(0, 10).map((response) =>
-                      <li className={page === response ? 'active' : ''} onClick={() => showMore(response)}>{response}</li>
+                      <li key={response} className={page === response ? 'active' : ''} onClick={() => showMore(response)}>{response}</li>
                     )
                   }
                   <li className={(page >= pageNumbers.length) ? 'disabled' : ''} onClick={(page >= pageNumbers.length) ? '' : () => showMore(page + 1)}><FaChevronRight /></li>
